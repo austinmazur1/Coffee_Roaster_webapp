@@ -28,7 +28,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
   if (parsed.success) {
     const parsedData = parsed.data;
     const {roaster, ...beanData} = parsedData
-    // const roaster = await Roaster.findById(roasterId);
+    const foundRoaster = await Roaster.findById(roaster);
+
     if (!roaster) {
       return NextResponse.status(404).json({ message: "Roaster not found" });
     }
@@ -36,8 +37,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     await bean.save();
 
     // Add the bean's ID to the roaster's beans array and save
-    roaster.beans.push(bean._id);
-    await roaster.save();
+    foundRoaster.beans.push(bean._id);
+    await foundRoaster.save();
 
     return NextResponse.json(
       { message: "data validation and parsing success" },

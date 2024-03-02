@@ -1,3 +1,4 @@
+import { beanFormSchema } from "@/schemas/beanFormSchema";
 import mongoose from "mongoose";
 
 const BeanSchema = new mongoose.Schema({
@@ -11,6 +12,6 @@ const BeanSchema = new mongoose.Schema({
   roaster: { type: mongoose.Schema.Types.ObjectId, ref: "Roaster" },
 });
 
-const Beans = mongoose.model("Bean", BeanSchema);
+const Beans = mongoose.models.Beans || mongoose.model('Beans', BeanSchema);
 
 export default Beans;
