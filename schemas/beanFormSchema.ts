@@ -20,27 +20,17 @@ const notesSchema = z.string()
     .filter(note => note !== '') // Filter out any empty strings resulting from consecutive commas or commas at the start/end.
   );
 
-const validateInput = (value: string) => {
-  // Split the input based on spaces to check the number of words
-  const words = value.split(' ').filter(Boolean); // filter(Boolean) removes empty strings from the array
-  
-  // If there's more than one word, check for commas
-  if (words.length > 1) {
-    return value.includes(',');
-  }
-
-  // If there's only one word, no comma is needed
-  return true;
-};
+  const originSchema = z.object({
+    country: z.string().trim().min(1, { message: "Country is required!" }), // Assuming country is always required
+    region: z.string().trim().min(1, { message: "Region is required!" }), // Region can be optional; adjust validation as needed
+  });
 
 export const beanFormSchema = z.object({
   name: z
     .string()
     .trim()
     .min(2, { message: "Must be longer than 2 characters!" }),
-  origin: z.string().trim().refine(validateInput, {
-    message: customMessage,
-  }),
+  origin: originSchema,
   process: z.string().trim().min(5),
   elevation: z.string().trim().min(3),
   notes: notesSchema,

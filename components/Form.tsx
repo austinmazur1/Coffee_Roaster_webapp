@@ -4,14 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Input from "./Input";
 import Select from "./Select";
-// import { FormSchemaInputType, formSchema, titleOptions } from '@/schemas/schema';
 import {
   beanFormSchema,
   roastLevelOptions,
   brewMethodOptions,
 } from "@/schemas/beanFormSchema";
 import Checkbox from "./Checkbox";
-import { useEffect } from "react";
 
 export default function Form({ data }) {
   const {
@@ -21,16 +19,18 @@ export default function Form({ data }) {
   } = useForm<any>({
     resolver: zodResolver(beanFormSchema, {}, { raw: true }),
   });
+
   const onSubmit: SubmitHandler<any> = async (data) => {
     console.log('data',data)
     const formData = new FormData();
 
-    console.log('PRE_formdata', formData)
-    for (const field of Object.keys(data) as Array<keyof typeof data>) {
-          formData.append(`${field}`, `${data[field]}`);
-        }
-
-        console.log('formdata', formData)
+ for (const field of Object.keys(data)) {
+    if (typeof data[field] === 'object') {
+      formData.append(field, JSON.stringify(data[field])); // Serialize nested objects
+    } else {
+      formData.append(field, data[field]);
+    }
+  }
   
     await fetch('/api/roasters/', { body: formData, method: 'POST' });
   };
@@ -56,9 +56,15 @@ export default function Form({ data }) {
       />
 
       <Input
-        label="Origin"
-        {...register("origin")}
-        error={errors.origin?.message}
+        label="Country"
+        {...register("origin.country")}
+        error={errors.origin?.country?.message}
+        required
+      />
+      <Input
+        label="Region"
+        {...register("origin.region")}
+        error={errors.origin?.region?.message}
         required
       />
 
