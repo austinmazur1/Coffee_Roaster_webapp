@@ -14,7 +14,10 @@ export enum BrewMethods {
 export interface BeanType {
 _id: string;
 name: string;
-origin: string;
+origin: {
+  region: string;
+  country: string
+};
 process: string;
 elevation: string;
 notes: any;

@@ -49,7 +49,9 @@ export default function RoasterDetails({
         <div className="flex flex-col" key={coffeeBeans?._id}>
           <div className="flex flex-col">
             <p className="lg:text-3xl">{coffeeBeans?.name}</p>
-            <p className="lg:text-2xl">{coffeeBeans?.origin.region} {coffeeBeans?.origin.country}</p>
+            <p className="lg:text-2xl">
+              {coffeeBeans?.origin.region} {coffeeBeans?.origin.country}
+            </p>
           </div>
           <p className="">{coffeeBeans?.elevation}</p>
           <p className="">{coffeeBeans?.process}</p>

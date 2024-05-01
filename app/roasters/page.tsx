@@ -11,6 +11,7 @@ export default function Roaster() {
 
   return (
     <main className="flex flex-col items-center p-24 ">
+      <a href="/roasters/new-roaster">Add a roaster!</a>
       <h1 className="text-2xl font-bold mb-8">Coffeepedia ☕️</h1>
       <div className="flex w-full justify-around">
         {data?.map((roasterData) => (
