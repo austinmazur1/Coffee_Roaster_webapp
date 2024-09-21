@@ -1,0 +1,72 @@
+"use client";
+import Link from "next/link";
+
+// import { type NavItem } from "@/types";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+// import { useSidebar } from "@/hooks/useSidebar";
+import { buttonVariants } from "@/components/ui/button";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/layout/subnav-accordion";
+import { useEffect, useState } from "react";
+// import { ChevronDownIcon } from "@radix-ui/react-icons";
+
+interface SideNavProps {
+  items: any;
+  // items: NavItem[];
+  setOpen?: (open: boolean) => void;
+  className?: string;
+}
+
+export function SideNav({ items, setOpen, className }: SideNavProps) {
+  const path = usePathname();
+  // const { isOpen } = useSidebar();
+  const isOpen = true;
+  const [openItem, setOpenItem] = useState("");
+  const [lastOpenItem, setLastOpenItem] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      setOpenItem(lastOpenItem);
+    } else {
+      setLastOpenItem(openItem);
+      setOpenItem("");
+    }
+  }, [isOpen]);
+  console.log("items", items);
+  return (
+    <nav className="space-y-2">
+      {items.map((item) => {
+        return (
+          <Link
+            key={item.key}
+            href={item.route}
+            onClick={() => {
+              if (setOpen) setOpen(false);
+            }}
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              "group relative flex h-12 justify-start",
+              path === item.href && "bg-muted font-bold hover:bg-muted"
+            )}
+          >
+            {/* <item.icon className={cn("h-5 w-5", item.color)} /> */}
+            <span
+              className={cn(
+                "absolute left-12 text-base duration-200",
+                !isOpen && className
+              )}
+            >
+              {item.label}
+            </span>
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
