@@ -21,17 +21,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* <head /> */}
-      <Sidebar />
-      <main>
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          {children}
-        </body>
-      </main>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <div className="grid grid-cols-[auto,1fr] min-h-screen">
+          <Sidebar className="sticky top-0 h-screen" />
+          <main className="overflow-y-auto">{children}</main>
+        </div>
+      </body>
     </html>
   );
 }

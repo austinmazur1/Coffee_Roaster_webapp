@@ -38,7 +38,7 @@ export function SideNav({ items, setOpen, className }: SideNavProps) {
       setOpenItem("");
     }
   }, [isOpen]);
-  console.log("items", items);
+
   return (
     <nav className="space-y-2">
       {items.map((item) => {

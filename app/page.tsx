@@ -42,55 +42,8 @@ export default function Home() {
 
   return (
     <>
-      {/* <div className="flex bg-blue-500 w-full p-6 justify-end"> */}
-        {/* <div className="flex gap-4"> */}
-          {/* <a href="/roasters">Roasters</a> */}
-          {/* <a href="/">Beans</a> */}
-        {/* </div> */}
-      {/* </div> */}
-      {/* <main className="flex min-h-screen flex-col items-center justify-between p-24"> */}
-        {/* <h1 className="text-2xl font-bold mb-8">Coffeepedia ☕️</h1> */}
-        {/* <Form data={transformedData} /> */}
-       
-      {/* </main> */}
+      <h1 className="text-2xl font-bold mb-8">Dashboard</h1>
+      {/* <Form data={transformedData} /> */}
     </>
   );
 }
-{/* <Sheet open={true}>
-<SheetContent side={"left"} className="w-[300px]">
-  <SheetHeader>
-    <SheetTitle>Coffeepedia ☕️</SheetTitle>
-  </SheetHeader>
-  <Separator />
-  <div className="grid gap-4 py-4">
-    {SIDEBAR_OPTIONS.map(({ key, label, route }) => {
-      return (
-        <Link
-          key={key}
-          href={route}
-          onClick={() => {
-            // if (setOpen) setOpen(false);
-          }}
-          className={cn(
-            buttonVariants({ variant: "ghost" }),
-            "group relative flex h-12 justify-start gap-x-3",
-            path === route && "bg-muted font-bold hover:bg-muted"
-          )}
-        >
-          {/* <child.icon className={cn("h-5 w-5", child.color)} /> TODO add icons */}
-//           <div
-//             className={cn(
-//               "absolute left-12 text-base duration-200",
-//               // !isOpen && className
-//             )}
-//           >
-//             {label}
-//           </div>
-//         </Link>
-//       );
-//     })}
-//   </div>
-//   <SheetFooter>
-//   </SheetFooter>
-// </SheetContent>
-// </Sheet> */}
