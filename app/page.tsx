@@ -1,4 +1,4 @@
-"use client";
+
 import fetcher from "@/lib/fetcher";
 import { RoasterType } from "@/types/roasterTypes";
 import useSWR from "swr";
@@ -22,28 +22,24 @@ import {
 import { Toggle } from "@/components/ui/toggle";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { usePathname } from "next/navigation";
-
-const SIDEBAR_OPTIONS = [
-  { key: "dashboard", label: "Dashboard", route: "/" },
-  { key: "roasters", label: "Roasters", route: "/roasters" },
-  { key: "beans", label: "Beans", route: "/beans" },
-];
+import {RoastersPage} from "@/containers/tables/roasters/page"
 
 export default function Home() {
-  const path = usePathname();
-  const { data, error, isLoading } = useSWR<RoasterType[]>(
-    "/api/roasters/",
-    fetcher
-  );
-  const transformedData = data?.map((roaster: RoasterType) => ({
-    id: roaster._id, // Assuming each roaster has a unique _id
-    name: roaster.name,
-  }));
+  // const path = usePathname();
+  // const { data, error, isLoading } = useSWR<RoasterType[]>(
+  //   "/api/roasters/",
+  //   fetcher
+  // );
+  // const transformedData = data?.map((roaster: RoasterType) => ({
+  //   id: roaster._id, // Assuming each roaster has a unique _id
+  //   name: roaster.name,
+  // }));
 
   return (
-    <>
+    <div className="px-6">
       <h1 className="text-2xl font-bold mb-8">Dashboard</h1>
+      <RoastersPage />
       {/* <Form data={transformedData} /> */}
-    </>
+    </div>
   );
 }
