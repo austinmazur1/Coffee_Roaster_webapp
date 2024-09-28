@@ -53,5 +53,13 @@ const RoasterSchema = new mongoose.Schema({
   }],
 });
 
+// Transform the `_id` field to a string whenever the model is converted to JSON
+RoasterSchema.set('toJSON', {
+  transform: (doc, ret) => {
+    ret._id = ret._id.toString();
+    return ret;
+  },
+});
+
 export default mongoose.models.Roaster || mongoose.model('Roaster', RoasterSchema);
 

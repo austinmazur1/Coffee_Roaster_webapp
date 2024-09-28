@@ -27,3 +27,5 @@ export interface RoasterType {
   socialMedia: SocialMedia;
   beans: string[];
 }
+
+export type PartialRoasterType = Partial<RoasterType>;

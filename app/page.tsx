@@ -1,4 +1,3 @@
-
 import fetcher from "@/lib/fetcher";
 import { RoasterType } from "@/types/roasterTypes";
 import useSWR from "swr";
@@ -22,24 +21,24 @@ import {
 import { Toggle } from "@/components/ui/toggle";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { usePathname } from "next/navigation";
-import {RoastersPage} from "@/containers/tables/roasters/page"
+import { RoastersPage } from "@/containers/tables/roasters/page";
+import { getRoasters } from "@/packages/client-only/services/roasters";
+import Roasters from "@/packages/server-only/models/Roasters";
+import { connectDB } from "@/packages/server-only/lib/connectDB";
 
-export default function Home() {
-  // const path = usePathname();
-  // const { data, error, isLoading } = useSWR<RoasterType[]>(
-  //   "/api/roasters/",
-  //   fetcher
-  // );
-  // const transformedData = data?.map((roaster: RoasterType) => ({
-  //   id: roaster._id, // Assuming each roaster has a unique _id
-  //   name: roaster.name,
-  // }));
+export default async function Home() {
+  await connectDB();
+  const res = await Roasters.find().lean();
+
+  const roasters = res.map((roaster) => ({
+    ...roaster,
+    _id: String(roaster._id),
+  }));
 
   return (
     <div className="px-6">
       <h1 className="text-2xl font-bold mb-8">Dashboard</h1>
-      <RoastersPage />
-      {/* <Form data={transformedData} /> */}
+      <RoastersPage roasterData={roasters} />
     </div>
   );
 }

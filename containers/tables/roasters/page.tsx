@@ -1,27 +1,15 @@
+import { PartialRoasterType, RoasterType } from "@/types/roasterTypes";
 import { Payment, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
-import fetcher from "@/lib/fetcher";
-import useSWR from "swr";
 
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    // ...
-  ];
+interface RoastersPageProps {
+  roasterData: PartialRoasterType[];
 }
 
-export const RoastersPage = async () => {
-  const data = await getData();
-
+export const RoastersPage = async ({ roasterData }: RoastersPageProps) => {
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={roasterData} />
     </div>
   );
 };

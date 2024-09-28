@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import Beans from "@/models/Beans";
+import Beans from "@/packages/server-only/models/Beans";
 import { BeanType } from "@/types/beanTypes";
 import { NextResponse, NextRequest } from "next/server";
-import { connectDB } from "@/utils/connectDB";
+import { connectDB } from "@/packages/server-only/utils/connectDB";
 
 type Params = {
     id: string

@@ -1,4 +1,4 @@
-// utils/connectDB.js
+// Why? This allows us to import wherever needed to ensure our db is connected 
 import mongoose from 'mongoose';
 
 const connection = {}; // This object will cache the connection

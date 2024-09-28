@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import Roaster from "@/models/Roasters";
+import Roaster from "@/packages/server-only/models/Roasters";
 import { RoasterType } from "@/types/roasterTypes";
 import { beanFormSchema } from "@/schemas/beanFormSchema";
 import { NextResponse, NextRequest } from "next/server";
-import { connectDB } from "@/utils/connectDB";
-import Beans from "@/models/Beans";
+import { connectDB } from "@/packages/server-only/utils/connectDB";
+import Beans from "@/packages/server-only/models/Beans";
 
 type Params = {
     id: string
