@@ -7,12 +7,12 @@ import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "@/packages/server-only/lib/connectDB";
 import Beans from "@/packages/server-only/models/Beans";
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
     await connectDB();
     const roasters = await Roaster.find({});
     return NextResponse.json({ success: true, roasters });
-  } catch (error) {
+  } catch (error:any) {
     return NextResponse.json({ success: false, error: error.message });
   }
 }

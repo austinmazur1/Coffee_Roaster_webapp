@@ -30,10 +30,12 @@ export default async function Home() {
   await connectDB();
   const res = await Roasters.find().lean();
 
-  const roasters = res.map((roaster) => ({
-    ...roaster,
-    _id: String(roaster._id),
-  }));
+  // const roasters = res.map((roaster) => ({
+  //   ...roaster,
+  //   _id: String(roaster._id),
+  // }));
+
+  const roasters = JSON.parse(JSON.stringify(res));
 
   return (
     <div className="px-6">

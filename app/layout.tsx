@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Coffeepeida",
   description: "Great coffee everywhere",
 };
-
+// TODO add top bar
 export default function RootLayout({
   children,
 }: Readonly<{
