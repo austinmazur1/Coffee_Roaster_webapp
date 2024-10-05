@@ -42,6 +42,7 @@ export function SideNav({ items, setOpen, className }: SideNavProps) {
   return (
     <nav className="space-y-2">
       {items.map((item) => {
+        const Icon = item.icon;
         return (
           <Link
             key={item.key}
@@ -55,7 +56,7 @@ export function SideNav({ items, setOpen, className }: SideNavProps) {
               path === item.href && "bg-muted font-bold hover:bg-muted"
             )}
           >
-            {/* <item.icon className={cn("h-5 w-5", item.color)} /> */}
+            {Icon && <Icon className={cn("h-5 w-5 mr-2")} />}
             <span
               className={cn(
                 "absolute left-12 text-base duration-200",

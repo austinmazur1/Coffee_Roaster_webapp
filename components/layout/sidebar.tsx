@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { SideNav } from "@/components/layout/side-nav";
+import {Coffee, CoffeeIcon, WarehouseIcon} from 'lucide-react'
 // import { NavItems } from "@/components/constants/side-nav";
 
 const SIDEBAR_OPTIONS = [
-  { key: "dashboard", label: "Dashboard", route: "/" },
-  { key: "roasters", label: "Roasters", route: "/roasters" },
-  { key: "beans", label: "Beans", route: "/beans" },
+  { key: "dashboard", label: "Roasters", route: "/", icon: WarehouseIcon  },
+  // { key: "roasters", label: "Roasters", route: "/roasters" },
+  { key: "beans", label: "Beans", route: "/beans", icon: CoffeeIcon},
 ];
 
 import { cn } from "@/lib/utils";

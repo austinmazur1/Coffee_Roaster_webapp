@@ -29,7 +29,10 @@ export default function RootLayout({
       >
         <div className="grid grid-cols-[auto,1fr] min-h-screen">
           <Sidebar className="sticky top-0 h-screen" />
-          <main className="overflow-y-auto">{children}</main>
+          <main className="overflow-y-auto">
+            {/* <div className="w-screen mt-20-2 h-14 bg-blue-100"></div> */}
+            {children}
+          </main>
         </div>
       </body>
     </html>

@@ -5,11 +5,17 @@ import Beans from "@/packages/server-only/models/Beans";
 export const GET = async (req: NextRequest, res: NextResponse) => {
   await connectDB();
   try {
-    const beans = await Beans.find({}).exec();
-    console.log('beans',beans)
+    const beans = await Beans.find({}).populate("roaster").lean();
+    const dataToSend = beans.map((bean) => ({
+      ...bean,
+      roaster: {
+        ...bean?.roaster,
+        id: bean?.roaster?._id.toString?.(),
+      },
+    }));
     return NextResponse.json({
       success: true,
-      data: beans,
+      data: dataToSend,
     });
   } catch (error: any) {
     return NextResponse.json({
