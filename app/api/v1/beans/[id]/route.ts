@@ -12,7 +12,6 @@ export async function GET(req: NextRequest, context: {params: Params}) {
   try {
     await connectDB();
     const coffeeBeans = await Beans.findById(beanId);
-    console.log('coffee beans', coffeeBeans)
     return Response.json(coffeeBeans);
   } catch (error) {
     console.log("ERR", error);

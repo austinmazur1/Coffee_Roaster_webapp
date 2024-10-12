@@ -1,5 +1,3 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-
 import Roaster from "@/packages/server-only/models/Roasters";
 import { RoasterType } from "@/types/roasterTypes";
 import { beanFormSchema } from "@/schemas/beanFormSchema";
@@ -12,7 +10,7 @@ export async function GET(req: NextRequest) {
     await connectDB();
     const roasters = await Roaster.find({});
     return NextResponse.json({ success: true, roasters });
-  } catch (error:any) {
+  } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message });
   }
 }
@@ -41,11 +39,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
       const foundRoaster = await Roaster.findById(roaster);
 
       if (!roaster) {
-        return NextResponse.status(404).json({ message: "Roaster not found" });
+        return NextResponse.json(
+          { message: "Roaster not found" },
+          { status: 404 }
+        );
       }
       const bean = new Beans(beanData);
       await bean.save();
-      console.log("foundRoaster, bean", foundRoaster, bean);
       // Add the bean's ID to the roaster's beans array and save
       foundRoaster.beans.push(bean._id);
       await foundRoaster.save();
